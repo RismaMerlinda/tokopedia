@@ -14,7 +14,6 @@ router.delete('/profile', authMiddleware, AuthController.deleteProfile);
 router.post('/forgot-password', AuthController.forgotPassword);
 router.post('/reset-password', AuthController.resetPassword);
 
-// --- CONTOH PEMBATASAN ROLE ---
 // Hanya bisa diakses oleh ADMIN
 router.get('/admin-only', authMiddleware, authorize('admin'), (req, res) => {
     res.json({ success: true, message: 'Selamat datang, Admin!', data: req.user });

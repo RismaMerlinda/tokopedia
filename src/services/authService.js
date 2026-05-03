@@ -5,28 +5,28 @@ const UserModel = require('../models/userModel');
 
 class AuthService {
     static async register(name, email, password) {
-        // Validation
+        // Validasi
         if (!email) {
             throw new Error('Email tidak boleh kosong');
         }
         
-        // Password Validation: Min 8 chars, 1 uppercase, 1 lowercase, 1 number
+        // Validasi password: min 8 karakter, ada huruf besar, kecil, dan angka
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
         if (!password || !passwordRegex.test(password)) {
             throw new Error('Password minimal 8 karakter, mengandung huruf besar, huruf kecil, dan angka');
         }
 
-        // Check if email exists
+        // Cek apakah email sudah terdaftar
         const existingUser = await UserModel.findByEmail(email);
         if (existingUser) {
             throw new Error('Email sudah terdaftar');
         }
 
-        // Hash password
+        // Enkripsi password
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        // Create user - FORCED to 'pembeli' for security
+        // Buat user baru - otomatis jadi 'pembeli' demi keamanan
         const userId = await UserModel.create({
             name,
             email,
@@ -39,7 +39,7 @@ class AuthService {
     }
 
     static async login(email, password) {
-        // Validation
+        // Validasi input login
         if (!email) {
             throw new Error('Email tidak boleh kosong');
         }
@@ -47,19 +47,19 @@ class AuthService {
             throw new Error('Password tidak boleh kosong');
         }
 
-        // Check user
+        // Cek keberadaan user
         const user = await UserModel.findByEmail(email);
         if (!user) {
             throw new Error('Kredensial tidak valid');
         }
 
-        // Check password
+        // Cek kecocokan password
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
             throw new Error('Kredensial tidak valid');
         }
 
-        // Generate JWT
+        // Buat token JWT
         const payload = {
             id: user.id_user,
             role: user.role
@@ -81,10 +81,10 @@ class AuthService {
     }
 
     static async loginByRole(email, password, requiredRole) {
-        // Use existing login logic
+        // Gunakan logika login yang sudah ada
         const result = await this.login(email, password);
         
-        // Verify role
+        // Verifikasi kesesuaian role
         if (result.user.role !== requiredRole) {
             throw new Error(`Akun Anda bukan ${requiredRole}, silakan login di pintu yang benar.`);
         }
@@ -102,9 +102,9 @@ class AuthService {
             throw new Error('User dengan email tersebut tidak ditemukan');
         }
 
-        // Generate reset token
+        // Buat token reset password
         const resetToken = crypto.randomBytes(20).toString('hex');
-        const expires = new Date(Date.now() + 3600000); // 1 hour from now
+        const expires = new Date(Date.now() + 3600000); // Berlaku 1 jam
 
         await UserModel.updateResetToken(email, resetToken, expires);
 
@@ -116,7 +116,7 @@ class AuthService {
             throw new Error('Token tidak valid');
         }
 
-        // Password Validation: Min 8 chars, 1 uppercase, 1 lowercase, 1 number
+        // Validasi format password baru
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
         if (!newPassword || !passwordRegex.test(newPassword)) {
             throw new Error('Password baru minimal 8 karakter, mengandung huruf besar, huruf kecil, dan angka');
@@ -127,7 +127,7 @@ class AuthService {
             throw new Error('Token tidak valid atau sudah kadaluwarsa');
         }
 
-        // Hash new password
+        // Enkripsi password baru
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(newPassword, salt);
 

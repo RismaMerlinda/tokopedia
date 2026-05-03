@@ -42,7 +42,7 @@ class AuthController {
 
     static async getProfile(req, res) {
         try {
-            // req.user is set by authMiddleware
+            // req.user diisi oleh authMiddleware
             return sendResponse(res, 200, true, 'Profil berhasil diambil', req.user);
         } catch (error) {
             console.error('Error in getProfile:', error);
@@ -55,7 +55,7 @@ class AuthController {
             const { email } = req.body;
             const token = await AuthService.forgotPassword(email);
 
-            // In a real app, you would send this token via email
+            // kirim token ini ke email user
             return sendResponse(res, 200, true, 'Token reset password telah dibuat', { resetToken: token });
         } catch (error) {
             console.error('Error in forgotPassword:', error);
@@ -121,7 +121,7 @@ class AuthController {
     static async updateProfile(req, res) {
         try {
             const { name, email } = req.body;
-            const userId = req.user.id; // From authMiddleware
+            const userId = req.user.id; // Dari middleware auth
 
             await UserModel.update(userId, { name, email, role: req.user.role });
 

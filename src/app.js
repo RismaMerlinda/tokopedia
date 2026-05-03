@@ -7,15 +7,15 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Routes
+// Rute-rute aplikasi
 app.use('/', authRoutes);
 
-// Root Route
+// Rute dasar (home)
 app.get('/', (req, res) => {
     res.send('<h2>Tokopedia API is Running!</h2>');
 });
 
-// 404 Handler
+// Tangani 404
 app.use((req, res) => {
     res.status(404).json({
         success: false,
