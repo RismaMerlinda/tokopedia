@@ -7,7 +7,7 @@ class UserModel {
     }
 
     static async findById(id) {
-        const [rows] = await db.query('SELECT id_user as id, full_name as name, email, role, created_at, updated_at FROM tb_user WHERE id_user = ?', [id]);
+        const [rows] = await db.query('SELECT id_user, id_user as id, full_name as name, email, role, created_at, updated_at FROM tb_user WHERE id_user = ?', [id]);
         return rows[0];
     }
 
