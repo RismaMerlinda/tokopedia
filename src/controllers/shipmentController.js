@@ -1,5 +1,6 @@
 const ShipmentModel = require('../models/shipmentModel');
 const OrderModel = require('../models/orderModel');
+const TransactionHistoryModel = require('../models/transactionHistoryModel');
 const { sendResponse } = require('../utils/response');
 
 class ShipmentController {
@@ -20,6 +21,9 @@ class ShipmentController {
             
             const shipmentId = await ShipmentModel.create(order_id, tracking_number, courier);
             await OrderModel.updateStatus(order_id, 'shipped');
+
+            // Catat Riwayat Transaksi
+            await TransactionHistoryModel.create(order.id_user, order_id, `Pesanan dikirim menggunakan kurir ${courier} dengan resi ${tracking_number}`);
 
             return sendResponse(res, 201, true, 'Shipment created, order status updated to shipped', { shipment_id: shipmentId });
         } catch (error) {

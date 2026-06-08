@@ -1,5 +1,6 @@
 const OrderModel = require('../models/orderModel');
 const ProductModel = require('../models/productModel');
+const TransactionHistoryModel = require('../models/transactionHistoryModel');
 const { sendResponse } = require('../utils/response');
 
 class OrderController {
@@ -112,6 +113,9 @@ class OrderController {
             // Juga perbarui tabel Escrows secara langsung
             const EscrowModel = require('../models/escrowModel');
             await EscrowModel.updateStatus(id, 'released');
+
+            // Catat Riwayat Transaksi
+            await TransactionHistoryModel.create(order.id_user, id, 'Pesanan selesai dan barang telah diterima');
 
             return sendResponse(res, 200, true, 'Penerimaan dikonfirmasi, dana diteruskan ke penjual');
         } catch (error) {

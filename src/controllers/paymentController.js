@@ -1,6 +1,7 @@
 const PaymentModel = require('../models/paymentModel');
 const EscrowModel = require('../models/escrowModel');
 const OrderModel = require('../models/orderModel');
+const TransactionHistoryModel = require('../models/transactionHistoryModel');
 const { sendResponse } = require('../utils/response');
 
 class PaymentController {
@@ -20,6 +21,9 @@ class PaymentController {
 
             // Perbarui status pesanan
             await OrderModel.updateStatus(order_id, 'paid', 'holding');
+
+            // Catat Riwayat Transaksi
+            await TransactionHistoryModel.create(order.id_user, order_id, 'Pesanan dibayar');
 
             return sendResponse(res, 201, true, 'Pembayaran berhasil. Dana kini berada di escrow.', { payment_id: paymentId });
         } catch (error) {
