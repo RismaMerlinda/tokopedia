@@ -1,3 +1,7 @@
+/**
+ * Route: authRoutes
+ * Mendefinisikan titik akhir (endpoint) API dan mengarahkannya ke controller yang sesuai.
+ */
 const express = require('express');
 const AuthController = require('../controllers/authController');
 const authMiddleware = require('../middleware/authMiddleware');

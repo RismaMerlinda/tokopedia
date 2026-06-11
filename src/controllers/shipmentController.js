@@ -4,6 +4,7 @@ const TransactionHistoryModel = require('../models/transactionHistoryModel');
 const { sendResponse } = require('../utils/response');
 
 class ShipmentController {
+    // Membuat data pengiriman baru dan mengubah status pesanan menjadi 'shipped' (dikirim).
     static async create(req, res) {
         try {
             const { order_id, tracking_number, courier } = req.body;
@@ -32,6 +33,7 @@ class ShipmentController {
         }
     }
 
+    // Mengambil seluruh daftar pengiriman yang tercatat di dalam sistem.
     static async getAll(req, res) {
         try {
             const shipments = await ShipmentModel.getAll();
@@ -41,6 +43,7 @@ class ShipmentController {
         }
     }
 
+    // Mengambil detail pengiriman tertentu berdasarkan ID-nya.
     static async getById(req, res) {
         try {
             const { id } = req.params;

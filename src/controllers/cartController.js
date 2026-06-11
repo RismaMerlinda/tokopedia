@@ -3,6 +3,7 @@ const ProductModel = require('../models/productModel');
 const { sendResponse } = require('../utils/response');
 
 class CartController {
+    // Mengambil seluruh isi keranjang belanja dari pengguna yang sedang login.
     static async getCart(req, res) {
         try {
             const userId = req.user.id;
@@ -14,6 +15,7 @@ class CartController {
         }
     }
 
+    // Menambahkan produk tertentu ke dalam keranjang belanja pengguna.
     static async addToCart(req, res) {
         try {
             const userId = req.user.id;
@@ -53,6 +55,7 @@ class CartController {
         }
     }
 
+    // Mengubah jumlah (quantity) produk yang sudah ada di dalam keranjang belanja.
     static async updateCartItem(req, res) {
         try {
             const { id } = req.params; // id item keranjang
@@ -87,6 +90,7 @@ class CartController {
         }
     }
 
+    // Menghapus salah satu item produk dari keranjang belanja pengguna.
     static async removeFromCart(req, res) {
         try {
             const { id } = req.params; // id item keranjang

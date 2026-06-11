@@ -2,6 +2,7 @@ const CategoryModel = require('../models/categoryModel');
 const { sendResponse } = require('../utils/response');
 
 class CategoryController {
+    // Mengambil seluruh daftar kategori produk.
     static async getAll(req, res) {
         try {
             const categories = await CategoryModel.getAll();
@@ -12,6 +13,7 @@ class CategoryController {
         }
     }
 
+    // Membuat kategori produk baru (khusus admin).
     static async create(req, res) {
         try {
             const { name } = req.body;
@@ -28,6 +30,7 @@ class CategoryController {
         }
     }
 
+    // Mengubah nama atau detail kategori produk berdasarkan ID (khusus admin).
     static async update(req, res) {
         try {
             const { id } = req.params;
@@ -51,6 +54,7 @@ class CategoryController {
         }
     }
 
+    // Menghapus kategori produk berdasarkan ID (khusus admin).
     static async delete(req, res) {
         try {
             const { id } = req.params;

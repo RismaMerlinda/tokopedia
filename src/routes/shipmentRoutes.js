@@ -1,3 +1,7 @@
+/**
+ * Route: shipmentRoutes
+ * Mendefinisikan titik akhir (endpoint) API dan mengarahkannya ke controller yang sesuai.
+ */
 const express = require('express');
 const ShipmentController = require('../controllers/shipmentController');
 const authMiddleware = require('../middleware/authMiddleware');

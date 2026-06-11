@@ -2,6 +2,7 @@ const db = require('../config/db');
 const { sendResponse } = require('../utils/response');
 
 class DashboardController {
+    // Mengambil data statistik penjualan (total produk, order, pendapatan) untuk ditampilkan di dashboard penjual.
     static async getSellerDashboard(req, res) {
         try {
             const sellerId = req.user.id;

@@ -1,3 +1,7 @@
+/**
+ * Service: authService
+ * Berisi logika bisnis aplikasi untuk memisahkan proses bisnis dari controller.
+ */
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');

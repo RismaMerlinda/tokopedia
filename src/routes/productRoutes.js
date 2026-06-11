@@ -1,3 +1,7 @@
+/**
+ * Route: productRoutes
+ * Mendefinisikan titik akhir (endpoint) API dan mengarahkannya ke controller yang sesuai.
+ */
 const express = require('express');
 const ProductController = require('../controllers/productController');
 const authMiddleware = require('../middleware/authMiddleware');

@@ -1,3 +1,7 @@
+/**
+ * Route: dashboardRoutes
+ * Mendefinisikan titik akhir (endpoint) API dan mengarahkannya ke controller yang sesuai.
+ */
 const express = require('express');
 const DashboardController = require('../controllers/dashboardController');
 const authMiddleware = require('../middleware/authMiddleware');

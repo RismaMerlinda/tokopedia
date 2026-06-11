@@ -1,3 +1,7 @@
+/**
+ * Konfigurasi Utama Aplikasi Express
+ * Mengatur middleware, rute, dan penanganan error.
+ */
 const express = require('express');
 const cors = require('cors');
 const authRoutes = require('./routes/authRoutes');

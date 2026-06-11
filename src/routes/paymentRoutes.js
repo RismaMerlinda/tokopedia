@@ -1,3 +1,7 @@
+/**
+ * Route: paymentRoutes
+ * Mendefinisikan titik akhir (endpoint) API dan mengarahkannya ke controller yang sesuai.
+ */
 const express = require('express');
 const PaymentController = require('../controllers/paymentController');
 const authMiddleware = require('../middleware/authMiddleware');

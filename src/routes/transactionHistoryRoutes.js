@@ -1,3 +1,7 @@
+/**
+ * Route: transactionHistoryRoutes
+ * Mendefinisikan titik akhir (endpoint) API dan mengarahkannya ke controller yang sesuai.
+ */
 const express = require('express');
 const TransactionHistoryController = require('../controllers/transactionHistoryController');
 const authMiddleware = require('../middleware/authMiddleware');

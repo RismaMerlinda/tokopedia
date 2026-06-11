@@ -4,6 +4,7 @@ const TransactionHistoryModel = require('../models/transactionHistoryModel');
 const { sendResponse } = require('../utils/response');
 
 class OrderController {
+    // Mengambil daftar pesanan berdasarkan ID dan role pengguna.
     static async getAll(req, res) {
         try {
             const user = req.user;
@@ -15,6 +16,7 @@ class OrderController {
         }
     }
 
+    // Mengambil detail pesanan tertentu berdasarkan ID.
     static async getById(req, res) {
         try {
             const { id } = req.params;
@@ -33,6 +35,7 @@ class OrderController {
         }
     }
 
+    // Membuat pesanan baru (checkout) dari produk-produk yang dipilih.
     static async create(req, res) {
         try {
             const { items } = req.body; // Array dari { product_id, quantity }
@@ -57,6 +60,7 @@ class OrderController {
         }
     }
 
+    // Memperbarui status pesanan atau membatalkan pesanan.
     static async update(req, res) {
         try {
             const { id } = req.params;
@@ -91,6 +95,7 @@ class OrderController {
         }
     }
 
+    // Mengonfirmasi bahwa barang telah diterima, menyelesaikan pesanan, dan mencairkan dana ke penjual.
     static async confirmReceipt(req, res) {
         try {
             const { id } = req.params;
@@ -124,6 +129,7 @@ class OrderController {
         }
     }
 
+    // Menghapus catatan pesanan dari sistem (khusus admin).
     static async delete(req, res) {
         try {
             const { id } = req.params;

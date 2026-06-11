@@ -1,3 +1,7 @@
+/**
+ * Route: escrowRoutes
+ * Mendefinisikan titik akhir (endpoint) API dan mengarahkannya ke controller yang sesuai.
+ */
 const express = require('express');
 const EscrowController = require('../controllers/escrowController');
 const authMiddleware = require('../middleware/authMiddleware');

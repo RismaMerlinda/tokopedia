@@ -1,3 +1,7 @@
+/**
+ * Model: orderModel
+ * Merepresentasikan entitas database dan menangani interaksi langsung dengan database.
+ */
 const db = require('../config/db');
 
 class OrderModel {

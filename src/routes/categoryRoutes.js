@@ -1,3 +1,7 @@
+/**
+ * Route: categoryRoutes
+ * Mendefinisikan titik akhir (endpoint) API dan mengarahkannya ke controller yang sesuai.
+ */
 const express = require('express');
 const CategoryController = require('../controllers/categoryController');
 const authMiddleware = require('../middleware/authMiddleware');

@@ -2,6 +2,7 @@ const EscrowModel = require('../models/escrowModel');
 const { sendResponse } = require('../utils/response');
 
 class EscrowController {
+    // Mengambil seluruh data dana yang sedang ditahan (escrow) di dalam sistem (khusus admin).
     static async getAll(req, res) {
         try {
             const escrows = await EscrowModel.getAll();
@@ -13,6 +14,7 @@ class EscrowController {
     }
 
     // Pelepasan manual oleh Admin jika diperlukan
+    // Melepaskan dana secara manual ke pihak penjual jika terjadi kendala sistem (khusus admin).
     static async manualRelease(req, res) {
         try {
             const { order_id } = req.body;
@@ -29,6 +31,7 @@ class EscrowController {
     }
 
     // Pengembalian dana manual oleh Admin jika diperlukan
+    // Mengembalikan dana secara manual ke pihak pembeli jika transaksi dibatalkan (khusus admin).
     static async manualRefund(req, res) {
         try {
             const { order_id } = req.body;

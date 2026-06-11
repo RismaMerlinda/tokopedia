@@ -1,3 +1,7 @@
+/**
+ * Route: orderRoutes
+ * Mendefinisikan titik akhir (endpoint) API dan mengarahkannya ke controller yang sesuai.
+ */
 const express = require('express');
 const OrderController = require('../controllers/orderController');
 const authMiddleware = require('../middleware/authMiddleware');

@@ -1,3 +1,7 @@
+/**
+ * Route: cartRoutes
+ * Mendefinisikan titik akhir (endpoint) API dan mengarahkannya ke controller yang sesuai.
+ */
 const express = require('express');
 const CartController = require('../controllers/cartController');
 const authMiddleware = require('../middleware/authMiddleware');
@@ -5,7 +9,7 @@ const authorizeRole = require('../middleware/roleMiddleware');
 
 const router = express.Router();
 
-// Hanya pembeli (atau mungkin admin) yang boleh menggunakan keranjang belanja
+// Hanya pembeli yang boleh menggunakan keranjang belanja
 router.use(authMiddleware);
 
 router.get('/', authorizeRole('pembeli'), CartController.getCart);

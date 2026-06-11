@@ -2,6 +2,7 @@ const TransactionHistoryModel = require('../models/transactionHistoryModel');
 const { sendResponse } = require('../utils/response');
 
 class TransactionHistoryController {
+    // Mengambil seluruh riwayat transaksi sesuai dengan pengguna yang sedang login.
     static async getAll(req, res) {
         try {
             const user = req.user;
@@ -13,6 +14,7 @@ class TransactionHistoryController {
         }
     }
 
+    // Mengambil detail spesifik dari satu riwayat transaksi berdasarkan ID-nya.
     static async getById(req, res) {
         try {
             const { id } = req.params;
@@ -30,6 +32,7 @@ class TransactionHistoryController {
     }
     
     // POST/PUT/DELETE tambahan dapat ditangani dengan aman atau di-mock jika diperlukan untuk kelengkapan API
+    // Mencatat (membuat) riwayat aktivitas baru dalam sistem terkait pesanan.
     static async create(req, res) {
         try {
             const { order_id, activity } = req.body;
@@ -40,10 +43,12 @@ class TransactionHistoryController {
         }
     }
     
+    // (Tidak diizinkan) Mencegah modifikasi data riwayat transaksi agar tetap valid dan permanen.
     static async update(req, res) {
         return sendResponse(res, 405, false, 'Metode tidak diizinkan untuk riwayat transaksi');
     }
     
+    // (Tidak diizinkan) Mencegah penghapusan data riwayat transaksi untuk rekam jejak sistem.
     static async delete(req, res) {
         return sendResponse(res, 405, false, 'Metode tidak diizinkan untuk riwayat transaksi');
     }

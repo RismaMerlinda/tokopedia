@@ -1,3 +1,7 @@
+/**
+ * Middleware: authMiddleware
+ * Berfungsi untuk memvalidasi dan memproses permintaan sebelum mencapai controller.
+ */
 const jwt = require('jsonwebtoken');
 const UserModel = require('../models/userModel');
 const { sendResponse } = require('../utils/response');

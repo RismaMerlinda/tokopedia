@@ -1,3 +1,7 @@
+/**
+ * Route: disputeRoutes
+ * Mendefinisikan titik akhir (endpoint) API dan mengarahkannya ke controller yang sesuai.
+ */
 const express = require('express');
 const DisputeController = require('../controllers/disputeController');
 const authMiddleware = require('../middleware/authMiddleware');

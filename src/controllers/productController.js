@@ -2,6 +2,7 @@ const ProductModel = require('../models/productModel');
 const { sendResponse } = require('../utils/response');
 
 class ProductController {
+    // Mengambil seluruh daftar produk yang tersedia di sistem.
     static async getAll(req, res) {
         try {
             const products = await ProductModel.getAll();
@@ -12,6 +13,7 @@ class ProductController {
         }
     }
 
+    // Mengambil informasi detail dari satu produk berdasarkan ID-nya.
     static async getById(req, res) {
         try {
             const { id } = req.params;
@@ -26,6 +28,7 @@ class ProductController {
         }
     }
 
+    // Membuat dan menambahkan produk baru (khusus untuk penjual atau admin).
     static async create(req, res) {
         try {
             const { category_id, name, description, price, stock, image } = req.body;
@@ -59,6 +62,7 @@ class ProductController {
         }
     }
 
+    // Mengubah data atau detail produk (hanya dapat dilakukan oleh pemilik produk atau admin).
     static async update(req, res) {
         try {
             const { id } = req.params;
@@ -99,6 +103,7 @@ class ProductController {
         }
     }
 
+    // Menghapus produk dari sistem (hanya dapat dilakukan oleh pemilik produk atau admin).
     static async delete(req, res) {
         try {
             const { id } = req.params;

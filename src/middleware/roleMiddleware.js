@@ -1,3 +1,7 @@
+/**
+ * Middleware: roleMiddleware
+ * Berfungsi untuk memvalidasi dan memproses permintaan sebelum mencapai controller.
+ */
 const { sendResponse } = require('../utils/response');
 
 const authorize = (...roles) => {

@@ -3,6 +3,7 @@ const OrderModel = require('../models/orderModel');
 const { sendResponse } = require('../utils/response');
 
 class DisputeController {
+    // Membuat komplain atau sanggahan baru oleh pembeli untuk suatu pesanan.
     static async create(req, res) {
         try {
             const { order_id, reason } = req.body;
@@ -31,6 +32,7 @@ class DisputeController {
         }
     }
 
+    // Mengambil daftar komplain (dispute) yang ada, disesuaikan dengan peran pengguna (admin/penjual/pembeli).
     static async getAll(req, res) {
         try {
             const user = req.user;
@@ -49,6 +51,7 @@ class DisputeController {
         }
     }
 
+    // Memberikan tanggapan (dari pihak penjual) terhadap komplain yang diajukan oleh pembeli.
     static async respond(req, res) {
         try {
             const { id } = req.params;
@@ -88,6 +91,7 @@ class DisputeController {
         }
     }
 
+    // Mengambil detail spesifik dari suatu komplain berdasarkan ID-nya.
     static async getById(req, res) {
         try {
             const { id } = req.params;
@@ -104,6 +108,7 @@ class DisputeController {
         }
     }
     
+    // Memperbarui status komplain, biasanya dilakukan oleh Admin untuk memberikan keputusan akhir.
     static async update(req, res) {
         try {
             const { id } = req.params;
@@ -117,6 +122,7 @@ class DisputeController {
         }
     }
     
+    // Menghapus catatan komplain dari sistem berdasarkan ID-nya (khusus admin).
     static async delete(req, res) {
         try {
             const { id } = req.params;

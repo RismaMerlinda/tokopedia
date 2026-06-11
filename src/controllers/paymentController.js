@@ -5,6 +5,7 @@ const TransactionHistoryModel = require('../models/transactionHistoryModel');
 const { sendResponse } = require('../utils/response');
 
 class PaymentController {
+    // Mensimulasikan pembayaran yang berhasil dan memasukkan dana ke dalam Escrow (ditahan).
     static async simulatePayment(req, res) {
         try {
             const { order_id, payment_method } = req.body;
@@ -32,6 +33,7 @@ class PaymentController {
         }
     }
 
+    // Mengambil daftar seluruh riwayat pembayaran di dalam sistem.
     static async getAll(req, res) {
         try {
             const payments = await PaymentModel.getAll();
@@ -41,6 +43,7 @@ class PaymentController {
         }
     }
 
+    // Mengambil detail riwayat pembayaran tertentu berdasarkan ID.
     static async getById(req, res) {
         try {
             const { id } = req.params;

@@ -3,6 +3,7 @@ const UserModel = require('../models/userModel');
 const { sendResponse } = require('../utils/response');
 
 class AuthController {
+    // Mendaftarkan pengguna baru (pembeli, penjual, admin) ke dalam sistem.
     static async register(req, res) {
         try {
             const { name, email, password } = req.body;
@@ -15,6 +16,7 @@ class AuthController {
         }
     }
 
+    // Memproses login pengguna dan mengembalikan token JWT jika berhasil.
     static async login(req, res) {
         try {
             const { email, password } = req.body;
@@ -27,6 +29,7 @@ class AuthController {
         }
     }
 
+    // Memproses login berdasarkan peran (role) tertentu (misalnya khusus penjual atau admin).
     static async loginByRole(req, res) {
         try {
             const { role } = req.params;
@@ -40,6 +43,7 @@ class AuthController {
         }
     }
 
+    // Mengambil data profil pengguna yang sedang login berdasarkan token.
     static async getProfile(req, res) {
         try {
             // req.user diisi oleh authMiddleware
@@ -50,6 +54,7 @@ class AuthController {
         }
     }
 
+    // Menginisiasi proses lupa password dengan menghasilkan token reset password.
     static async forgotPassword(req, res) {
         try {
             const { email } = req.body;
@@ -63,6 +68,7 @@ class AuthController {
         }
     }
 
+    // Mengatur ulang password pengguna menggunakan token yang valid.
     static async resetPassword(req, res) {
         try {
             const { token, newPassword } = req.body;
@@ -75,6 +81,7 @@ class AuthController {
         }
     }
 
+    // Memperbarui peran (role) dari seorang pengguna (khusus untuk akses admin).
     static async updateUserRole(req, res) {
         try {
             const { targetUserId, newRole } = req.body;
@@ -92,6 +99,7 @@ class AuthController {
         }
     }
 
+    // Mengambil daftar seluruh pengguna di dalam sistem (khusus admin).
     static async getAllUsers(req, res) {
         try {
             const users = await UserModel.findAll();
@@ -102,6 +110,7 @@ class AuthController {
         }
     }
 
+    // Mengambil detail pengguna tertentu berdasarkan ID (khusus admin).
     static async getUserById(req, res) {
         try {
             const { id } = req.params;
@@ -118,6 +127,7 @@ class AuthController {
         }
     }
 
+    // Memperbarui data profil dari pengguna yang sedang login.
     static async updateProfile(req, res) {
         try {
             const { name, email } = req.body;
@@ -132,6 +142,7 @@ class AuthController {
         }
     }
 
+    // Memperbarui data pengguna secara spesifik berdasarkan ID (khusus admin).
     static async updateUserById(req, res) {
         try {
             const { id } = req.params;
@@ -151,6 +162,7 @@ class AuthController {
         }
     }
 
+    // Menghapus akun profil pengguna yang sedang login.
     static async deleteProfile(req, res) {
         try {
             const userId = req.user.id;
@@ -162,6 +174,7 @@ class AuthController {
         }
     }
 
+    // Menghapus akun pengguna tertentu berdasarkan ID (khusus admin).
     static async deleteUserById(req, res) {
         try {
             const { id } = req.params;
